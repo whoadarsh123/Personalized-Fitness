@@ -14,9 +14,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class PlanRequestDto{
 
-    private int age;
-    private int height;
-    private int weight;
+    private Integer age;
+    private Integer height;
+    private Integer weight;
 
    @JsonProperty("diet_type")
    private String diet_type;
