@@ -25,7 +25,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()) 
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/signup", "/api/signin", "/api/v1/fitness/generate" ).permitAll() 
+                .requestMatchers("/api/signup", "/api/signin", "/api/v1/fitness/gain", "/api/v1/fitness/loss").permitAll() 
                 .anyRequest().authenticated()                    
             )
             .sessionManagement(session-> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

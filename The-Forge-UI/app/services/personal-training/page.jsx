@@ -16,49 +16,74 @@ export default function SimpleTrainingForm() {
     { id: "strength", name: "Strength Training", icon: <Dumbbell className="w-4 h-4" /> },
   ];
 
- const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = React.useState({
     age: '',
     height: '',
     weight: '',
-    diet_type: 'Vegetarian', 
+    diet_type: 'Vegetarian',
     workout_location: 'Gym'
-});
+  });
 
-const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id || e.target.name]: e.target.value
-    });
+  const [lossData, setLossData] = React.useState({
+    age: '',
+    height: '',
+    weight: '',
+    activity: 'Vegetarian'
+  });
+
+  const handleChange = (e) => {
+    if (activeTab == "gain") {
+      setFormData({
+        ...formData,
+        [e.target.id]: e.target.value
+      });
+    }
+    else if (activeTab == "loss") {
+      setLossData({
+        ...lossData, [e.target.id]: e.target.value
+      });
+    }
   };
 
-  const handleSubmit = async(e) => {
-    e.preventDefault();
-   try{
-    const response = await fetch("http://localhost:8080/api/v1/fitness/generate",{
-      method: "POST",
-      headers:{
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData)
-    });
 
-    if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.message || `Server responded with status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log("Success:", data);
-        setSubmittedData(data);
-   }
-   catch(error)
-   {
-    alert(error);
-   }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let url = '';
+    let payload = null;
+    if (activeTab == 'gain') {
+      url = "http://localhost:8080/api/v1/fitness/gain";
+      payload = formData;
+    }
+    else if (activeTab == 'loss') {
+      url = "http://localhost:8080/api/v1/fitness/loss";
+      payload = lossData
+    }
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `Server responded with status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log("Success:", data);
+      setSubmittedData(data);
+    }
+    catch (error) {
+      alert(error);
+    }
   };
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white pt-28 pb-20 px-4 md:px-8 flex flex-col items-center justify-start relative">
-      
+
       {/* HEADER SECTION */}
       <div className="text-center mb-10">
         <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
@@ -74,14 +99,14 @@ const handleChange = (e) => {
         {categories.map((cat, idx) => {
           const isSelected = activeTab === cat.id;
           const isHovered = hoveredIdx === idx;
-          
+
           return (
             <button
               key={cat.id}
               type="button"
               onClick={() => {
                 setActiveTab(cat.id);
-                setSubmittedData(null); 
+                setSubmittedData(null);
               }}
               onMouseEnter={() => setHoveredIdx(idx)}
               onMouseLeave={() => setHoveredIdx(null)}
@@ -98,9 +123,8 @@ const handleChange = (e) => {
                   <motion.span
                     layoutId="simpleTabCapsule"
                     transition={{ type: "spring", stiffness: 380, damping: 22 }}
-                    className={`absolute inset-0 rounded-xl z-0 ${
-                      isSelected ? "bg-amber-500" : "bg-zinc-800"
-                    }`}
+                    className={`absolute inset-0 rounded-xl z-0 ${isSelected ? "bg-amber-500" : "bg-zinc-800"
+                      }`}
                   />
                 )}
               </AnimatePresence>
@@ -112,20 +136,11 @@ const handleChange = (e) => {
       {/* DYNAMIC FORM CONTAINER */}
       <div className="max-w-2xl w-full bg-zinc-900/20 border border-zinc-900 rounded-3xl p-6 md:p-8 shadow-2xl">
         <form onSubmit={handleSubmit} className="space-y-6">
-          
-        
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2">Age</label>
-              <input id="age" type="number" onChange={handleChange} value={formData.age} name="fullName" placeholder="Age" className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition" required />
-            </div>
-            <div>
-              <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2">Height (Cm)</label>
-              <input  id="height" value={formData.height} onChange={handleChange} type="number" name="currentWeight" placeholder="Height" className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition" required />
-            </div>
-          </div>
 
-          
+
+
+
+
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -137,27 +152,50 @@ const handleChange = (e) => {
             >
               {activeTab === "gain" && (
                 <div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2">Age</label>
+                      <input id="age" type="number" onChange={handleChange} value={formData.age} placeholder="Age" className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition" required />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2">Height (Cm)</label>
+                      <input id="height" value={formData.height} onChange={handleChange} type="number" placeholder="Height" className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition" required />
+                    </div>
+                  </div>
                   <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2">Weight (KG)</label>
-                  <input id="weight" value={formData.weight} onChange={handleChange} type="number" name="weightGoal" placeholder="Weight in Kg" className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition" required />
+                  <input id="weight" value={formData.weight} onChange={handleChange} type="number" placeholder="Weight in Kg" className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition" required />
                   <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2 mt-2">Diet Type</label>
                   <select id="diet_type" value={formData.diet_type} onChange={handleChange} name="Diet Type" className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition cursor-pointer">
-                  <option value="Vegitarian">Vegetarian</option>
-                  <option value="Non Vegitarian">Non Vegetarian</option>
+                    <option value="Vegitarian">Vegetarian</option>
+                    <option value="Non Vegitarian">Non Vegetarian</option>
                   </select>
                   <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2 mt-2">Workout Location</label>
                   <select id="workout_location" value={formData.workout_location} onChange={handleChange} name="Diet Type" className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition cursor-pointer">
-                  <option value="Gym">At Gym</option>
-                  <option value="Home">At Home</option>
+                    <option value="Gym">At Gym</option>
+                    <option value="Home">At Home</option>
                   </select>
                 </div>
               )}
 
               {activeTab === "loss" && (
                 <div>
-                  <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2">Target Fat Loss Timeline</label>
-                  <select name="timeline" className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition cursor-pointer">
-                    <option value="6-weeks">Aggressive Speed (6 Weeks)</option>
-                    <option value="12-weeks">Sustainable Pace (12 Weeks)</option>
+                   <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2">Age</label>
+                      <input id="age" type="number" onChange={handleChange} value={lossData.age} placeholder="Age" className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition" required />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2">Height (Cm)</label>
+                      <input id="height" value={lossData.height} onChange={handleChange} type="number" placeholder="Height" className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition" required />
+                    </div>
+                  </div>
+                  <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2 mt-2">Weight</label>
+                  <input id="weight" type="number" value={lossData.weight} onChange={handleChange} placeholder="Weight" className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition" required />
+                  <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2 mt-2">Activity</label>
+                  <select id="activity" value={lossData.activity} onChange={handleChange} className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition cursor-pointer">
+                    <option value="Lazy">Lazy</option>
+                    <option value="Lightly Active">Lightly Active</option>
+                    <option value="Activily Active">Activily Active</option>
                   </select>
                 </div>
               )}
@@ -191,16 +229,16 @@ const handleChange = (e) => {
               <div><span className="text-zinc-600">Protien:</span> {submittedData.predicted_macros.Protein}</div>
               <div><span className="text-zinc-600">Carbs:</span> {submittedData.predicted_macros.Carbs}</div>
               <div><span className="text-zinc-600">Fats:</span> {submittedData.predicted_macros.Fats}</div>
-              
+
             </div>
-            <div className="bg-zinc-950 rounded-xl font-mono text-xs space-y-5 p-1 text-zinc-300 "> 
-             {submittedData && <div><span className="text-zinc-600">Breakfast:</span> {submittedData.dietPlan.Breakfast}</div>}
+            <div className="bg-zinc-950 rounded-xl font-mono text-xs space-y-5 p-1 text-zinc-300 ">
+              {submittedData && <div><span className="text-zinc-600">Breakfast:</span> {submittedData.dietPlan.Breakfast}</div>}
               {submittedData && <div><span className="text-zinc-600">Lunch:</span> {submittedData.dietPlan.Lunch}</div>}
               {submittedData && <div><span className="text-zinc-600">Dinner:</span> {submittedData.dietPlan.Dinner}</div>}
 
             </div>
-            <div className="bg-zinc-950 rounded-xl font-bold mt-10 text-xs space-y-5 p-1 text-zinc-300 "> 
-             {submittedData && <div><span className="text-zinc-600 font-bold">Schedule: </span> {submittedData.workoutPlan.Schedule}</div>}
+            <div className="bg-zinc-950 rounded-xl font-bold mt-10 text-xs space-y-5 p-1 text-zinc-300 ">
+              {submittedData && <div><span className="text-zinc-600 font-bold">Schedule: </span> {submittedData.workoutPlan.Schedule}</div>}
               {submittedData && <div><span className="text-zinc-600  font-bold">Lunch: </span> {submittedData.dietPlan.Lunch}</div>}
               {submittedData && <div><span className="text-zinc-600 font-bold">Dinner: </span> {submittedData.dietPlan.Dinner}</div>}
             </div>

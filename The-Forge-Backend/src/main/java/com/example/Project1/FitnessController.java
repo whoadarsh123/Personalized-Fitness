@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 @CrossOrigin(origins = "http://localhost:3000/")
 public class FitnessController
 {
-    @PostMapping("/generate")
+    @PostMapping("/gain")
     public ResponseEntity<?> GeneratePlan(@RequestBody PlanRequestDto requestDto)
     {
         String pythonApiUrl = "http://localhost:8000/api/planner";
@@ -26,6 +26,19 @@ public class FitnessController
             return ResponseEntity.ok(responseFromPython);
         } catch (Exception e) {
             return ResponseEntity.status(500).body("could not connect to the python: " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/loss")
+    public ResponseEntity<?> WeightLossPlan(@RequestBody LossRequest request)
+    {
+        if(request.getAge() > 18)
+        {
+            return ResponseEntity.ok("wait the backnd code send your data to the python");
+        }
+        else
+        {
+            return ResponseEntity.status(500).body("You don't need to Loose Your Weight");
         }
     }
 }
