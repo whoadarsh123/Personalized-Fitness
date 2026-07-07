@@ -90,7 +90,7 @@ export default function Login({ onClose, setShowSignUp, setShowSignIn }) {
 
                 <p className="text-center text-zinc-500 text-sm mt-6">
                     New User?{" "}
-                    <button onClick={() => { setShowSignUp(true); setShowSignIn(false); }} className="text-amber-500 hover:underline font-medium">
+                    <button onClick={()=> {setShowSignIn(true); setShowSignUp(false)}} className="text-amber-500 hover:underline font-medium">
                         Sign Up
                     </button>
                 </p>

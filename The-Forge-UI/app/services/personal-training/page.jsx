@@ -28,7 +28,9 @@ export default function SimpleTrainingForm() {
     age: '',
     height: '',
     weight: '',
-    activity: 'Vegetarian'
+    gender: 'male',
+    activity_level: 'Vegetarian'
+    
   });
 
   const handleChange = (e) => {
@@ -188,11 +190,20 @@ export default function SimpleTrainingForm() {
                       <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2">Height (Cm)</label>
                       <input id="height" value={lossData.height} onChange={handleChange} type="number" placeholder="Height" className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition" required />
                     </div>
+                    <div>
+                     <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2 mt-2">Weight</label>
+                      <input id="weight" type="number" value={lossData.weight} onChange={handleChange} placeholder="Weight" className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition" required />
+                    </div>
+                    <div>
+                     <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2 mt-2">Gender</label>
+                     <select id="gender"  value={lossData.gender} onChange={handleChange} className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition">
+                     <option value="male">Male</option>
+                     <option value="female">Female</option>
+                     </select>
+                    </div>
                   </div>
-                  <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2 mt-2">Weight</label>
-                  <input id="weight" type="number" value={lossData.weight} onChange={handleChange} placeholder="Weight" className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition" required />
                   <label className="block text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2 mt-2">Activity</label>
-                  <select id="activity" value={lossData.activity} onChange={handleChange} className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition cursor-pointer">
+                  <select id="activity_level" value={lossData.activity_level} onChange={handleChange} className="w-full bg-zinc-950 border border-zinc-900 focus:border-amber-500/50 rounded-xl px-4 py-3 text-white text-sm outline-none transition cursor-pointer">
                     <option value="Lazy">Lazy</option>
                     <option value="Lightly Active">Lightly Active</option>
                     <option value="Activily Active">Activily Active</option>
@@ -219,7 +230,7 @@ export default function SimpleTrainingForm() {
         </form>
 
         {/* OUTPUT DATA BLOCK (SIMULATED ENDPOINT RESULT) */}
-        {submittedData && (
+        {submittedData?.predicted_macros && submittedData?.dietPlan && submittedData?.workoutPlan && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-8 pt-6 border-t border-zinc-900 space-y-4">
             <div className="flex items-center gap-2 text-amber-500 text-xs font-mono font-bold uppercase tracking-wider">
               <Target className="w-4 h-4" /> Data Captured Successfully:
@@ -241,6 +252,33 @@ export default function SimpleTrainingForm() {
               {submittedData && <div><span className="text-zinc-600 font-bold">Schedule: </span> {submittedData.workoutPlan.Schedule}</div>}
               {submittedData && <div><span className="text-zinc-600  font-bold">Lunch: </span> {submittedData.dietPlan.Lunch}</div>}
               {submittedData && <div><span className="text-zinc-600 font-bold">Dinner: </span> {submittedData.dietPlan.Dinner}</div>}
+            </div>
+          </motion.div>
+        )}
+        
+        {submittedData?.predicted_macros && submittedData?.dietPlan && submittedData?.cardioAndWorkoutPlan && (
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-8 pt-6 border-t border-zinc-900 space-y-4">
+            <div className="flex items-center gap-2 text-amber-500 text-xs font-mono font-bold uppercase tracking-wider">
+              <Target className="w-4 h-4" /> Data Captured Successfully:
+            </div>
+            <div className="bg-zinc-950 p-4 rounded-xl border border-zinc-900 font-mono text-xs text-zinc-400 space-y-2">
+              <div><span className="text-zinc-600">Calories:</span> {submittedData.predicted_macros.Calories}</div>
+              <div><span className="text-zinc-600">Protien:</span> {submittedData.predicted_macros.Protein}</div>
+              <div><span className="text-zinc-600">Carbs:</span> {submittedData.predicted_macros.Carbs}</div>
+              <div><span className="text-zinc-600">Fats:</span> {submittedData.predicted_macros.Fats}</div>
+
+            </div>
+            <div className="bg-zinc-950 rounded-xl font-mono text-xs space-y-5 p-1 text-zinc-300 ">
+              {submittedData && <div><span className="text-zinc-600">Meal 1:</span> {submittedData.dietPlan.Meal1}</div>}
+              {submittedData && <div><span className="text-zinc-600">Meal 2:</span> {submittedData.dietPlan.Meal2}</div>}
+              {submittedData && <div><span className="text-zinc-600">Meal 3:</span> {submittedData.dietPlan.Meal3}</div>}
+              {submittedData && <div><span className="text-zinc-600">Meal 4:</span> {submittedData.dietPlan.Meal4}</div>}
+
+            </div>
+            <div className="bg-zinc-950 rounded-xl font-bold mt-10 text-xs space-y-5 p-1 text-zinc-300 ">
+              {submittedData && <div><span className="text-zinc-600 font-bold">Intensity: </span> {submittedData.cardioAndWorkoutPlan.Intensity}</div>}
+              {submittedData && <div><span className="text-zinc-600  font-bold">Cardio: </span> {submittedData.cardioAndWorkoutPlan.CardioRoutine}</div>}
+              {submittedData && <div><span className="text-zinc-600 font-bold">Exercises: </span> {submittedData.cardioAndWorkoutPlan.Exercises}</div>}
             </div>
           </motion.div>
         )}

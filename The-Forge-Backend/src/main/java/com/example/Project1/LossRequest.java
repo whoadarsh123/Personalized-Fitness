@@ -14,7 +14,7 @@ public class LossRequest {
    private Integer age;
    private Integer height;
    private Integer weight;
-
-   private String activity;
+   private String gender;
+   private String activity_level;
 
 }

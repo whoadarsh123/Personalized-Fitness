@@ -25,20 +25,23 @@ public class FitnessController
             Object responseFromPython = restTemplate.postForObject(pythonApiUrl, requestDto, Object.class);
             return ResponseEntity.ok(responseFromPython);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("could not connect to the python: " + e.getMessage());
+            return ResponseEntity.status(500).body("Calculation Model Failed" + e.getMessage());
         }
     }
 
     @PostMapping("/loss")
     public ResponseEntity<?> WeightLossPlan(@RequestBody LossRequest request)
     {
-        if(request.getAge() > 18)
+        String LossApiUrl = "http://localhost:8000/api/weightloss";
+
+        RestTemplate template = new RestTemplate();
+        try
         {
-            return ResponseEntity.ok("wait the backnd code send your data to the python");
+            Object ResponseFromModel = template.postForObject(LossApiUrl, request, Object.class);
+            return ResponseEntity.ok(ResponseFromModel);
         }
-        else
-        {
-            return ResponseEntity.status(500).body("You don't need to Loose Your Weight");
+        catch (Exception e){
+            return ResponseEntity.status(500).body("Calculation Model Failed"+ e.getMessage());
         }
     }
 }
