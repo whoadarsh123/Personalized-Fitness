@@ -6,8 +6,10 @@ import { Menu, X, Dumbbell, ChevronRight, Target, Activity, Shield, Flame, Zap, 
 import Link from "next/link";
 import HoverCard from "./HoverCard";
 import { UserCard } from "./UserCard";
+import Login from "./Login";
+import SignUpCard from "./SignUpCard";
 
-export default function Navbar({setShowSignUp,setShowSignIn}) {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
  const [hoveredLinkIdx, setHoveredLinkIdx] = useState(null);
  const[islogin , setIsLogin] = useState(false);
@@ -22,7 +24,8 @@ export default function Navbar({setShowSignUp,setShowSignIn}) {
   }
 },[]);
 
- 
+ const [showlogin, setShowLogIn] = useState(false);
+ const [showsignup, setShowsignup] = useState(false);
 
  const navigationConfig = [
     { name: "Home", href: "/", dropdownItems: null },
@@ -55,7 +58,7 @@ export default function Navbar({setShowSignUp,setShowSignIn}) {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900 z-50 px-4 md:px-8">
+    <nav className=" fixed top-0 left-0 w-full bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900 z-50 px-4 md:px-8">
       <div className="max-w-7xl mx-auto flex items-center justify-between h-20">
         
         {/* LOGO */}
@@ -64,31 +67,27 @@ export default function Navbar({setShowSignUp,setShowSignIn}) {
           <span>THE<span className="text-amber-500">FORGE</span></span>
         </Link>
 
+        {showlogin &&(<Login setShowSignIn={setShowLogIn} setShowSignUp={setShowsignup} onClose={()=> {setShowLogIn(false)}}/>)}
+        {showsignup &&(<SignUpCard setShowSignIn={setShowLogIn} setShowSignUp={setShowsignup} onClose={()=> {setShowsignup(false)}}/>)}
+
         {/* DESKTOP NAV LINKS (With Animated Hover Pill) */}
        <div className="hidden md:flex items-center gap-2 h-full">
           {navigationConfig.map((linkItem, idx) => (
             <div 
               key={idx}
               className="relative h-full flex items-center"
-              // Track exactly which link index the mouse is sitting on
               onMouseEnter={() => setHoveredLinkIdx(idx)}
               onMouseLeave={() => setHoveredLinkIdx(null)}
             >
               {/* The Navbar Text Label */}
               <Link 
                 href={linkItem.href} 
-                className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-zinc-100 transition cursor-pointer"
-              >
+                className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-zinc-100 transition cursor-pointer">
                 {linkItem.name}
               </Link>
 
               {/* DYNAMIC HOVER CARD TRIGGER */}
               <AnimatePresence>
-                {/* 
-                  Only show the dropdown card if:
-                  1. This specific index matches what the user is hovering over (`hoveredLinkIdx === idx`)
-                  2. The link item actually has sub-elements inside its `dropdownItems` array
-                */}
                 {hoveredLinkIdx === idx && linkItem.dropdownItems && (
                   <HoverCard items={linkItem.dropdownItems} />
                 )}
@@ -105,10 +104,10 @@ export default function Navbar({setShowSignUp,setShowSignIn}) {
           </div>
         ) : (
         <div className="hidden md:flex items-center gap-4">
-          <button onClick={()=> {setShowSignIn(true)}} className="text-sm font-semibold text-zinc-400 hover:text-zinc-100 transition">
+          <button onClick={()=> {setShowLogIn(true)}} className="text-sm font-semibold text-zinc-400 hover:text-zinc-100 transition">
             Login
           </button>
-          <button onClick={() => {setShowSignUp(true)}} className="bg-gradient-to-r from-amber-500 to-orange-500 text-black text-sm font-bold px-5 py-2.5 rounded-md flex items-center gap-1 hover:opacity-90 transition group shadow-lg shadow-amber-500/10">
+          <button onClick={()=> {setShowsignup(true)}} className="bg-gradient-to-r from-amber-500 to-orange-500 text-black text-sm font-bold px-5 py-2.5 rounded-md flex items-center gap-1 hover:opacity-90 transition group shadow-lg shadow-amber-500/10">
             Get Started <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>

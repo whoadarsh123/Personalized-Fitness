@@ -47,7 +47,7 @@ export default function Login({ onClose, setShowSignUp, setShowSignIn }) {
     };
 
     return (
-        <div className="fixed top-[80px]  left-1/2  -translate-x-1/2 w-[500px] h-120 bg-zinc-900/90 backdrop-blur-xl border border-zinc-800 p-6 rounded-2xl shadow-2xl shadow-black/80 z-50 grid grid-rows-1 gap-4">
+        <div className="fixed top-[90px]  left-1/2  -translate-x-1/2 w-[500px] h-120 bg-zinc-900/90 backdrop-blur-xl border border-zinc-800 p-6 rounded-2xl shadow-2xl shadow-black/80 z-50 grid grid-rows-1 gap-4">
             <X className="opacity-30 cursor-pointer" onClick={() => onClose(true)} />
             <form onSubmit={handleLogIn} className="space-y-10 flex-col justify-center items-center">
 
@@ -90,7 +90,7 @@ export default function Login({ onClose, setShowSignUp, setShowSignIn }) {
 
                 <p className="text-center text-zinc-500 text-sm mt-6">
                     New User?{" "}
-                    <button onClick={()=> {setShowSignIn(true); setShowSignUp(false)}} className="text-amber-500 hover:underline font-medium">
+                    <button onClick={()=> {setShowSignIn(false); setShowSignUp(true)}} className="text-amber-500 hover:underline font-medium">
                         Sign Up
                     </button>
                 </p>

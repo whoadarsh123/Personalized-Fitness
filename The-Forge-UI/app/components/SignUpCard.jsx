@@ -1,6 +1,5 @@
 "use client"
 import { useState, useEffect } from "react";
-import { motion, } from "framer-motion";
 import { X,Eye, EyeOff, Mail, Lock, User, ChevronRight } from "lucide-react";
 
 export default function SignUpCard({onClose, setShowSignIn, setShowSignUp})
@@ -121,7 +120,7 @@ return(
       {/* FOOTER */}
       <p className="text-center text-zinc-500 text-sm mt-6">
         Already have an account?{" "}
-        <button onClick={()=> {setShowSignIn(true); setShowSignUp(false)}} className="text-amber-500 hover:underline font-medium">
+        <button onClick={()=> {setShowSignUp(false); setShowSignIn(true);}} className="text-amber-500 hover:underline font-medium">
           Log In
         </button>
       </p>
