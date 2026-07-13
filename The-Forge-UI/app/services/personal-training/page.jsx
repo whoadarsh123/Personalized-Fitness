@@ -112,10 +112,10 @@ export default function SimpleTrainingForm() {
               }}
               onMouseEnter={() => setHoveredIdx(idx)}
               onMouseLeave={() => setHoveredIdx(null)}
-              className="relative flex-1 py-3 text-xs font-black tracking-wider uppercase transition-colors duration-300 flex items-center justify-center gap-2 rounded-xl cursor-pointer bg-transparent border-none outline-none"
+              className="relative flex-1 py-2 md:p-3 text-xs font-black tracking-wider uppercase transition-colors duration-300 flex items-center justify-center gap-2 rounded-xl cursor-pointer bg-transparent border-none outline-none"
               style={{ color: isSelected || isHovered ? "#000000" : "#a1a1aa" }}
             >
-              <span className="z-10 flex items-center gap-2 relative pointer-events-none">
+              <span className="z-10 flex items-center gap-1 px-3 relative pointer-events-none">
                 {cat.icon}
                 {cat.name}
               </span>
