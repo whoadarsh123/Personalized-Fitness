@@ -155,7 +155,7 @@ export default function Navbar() {
               >
                 Login
               </button>
-              <button className="bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold py-3 rounded-md w-full shadow-lg shadow-amber-500/10">
+              <button onClick={()=> {setIsOpen(false); setShowsignup(true)}} className="bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold py-3 rounded-md w-full shadow-lg shadow-amber-500/10">
                 Get Started
               </button>
             </div>
