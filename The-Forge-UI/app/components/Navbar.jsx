@@ -118,7 +118,7 @@ export default function Navbar() {
           onClick={() => setIsOpen(!isOpen)} 
           className="md:hidden text-zinc-400 hover:text-white transition focus:outline-none"
         >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6 " />}
         </button>
       </div>
 
@@ -133,7 +133,7 @@ export default function Navbar() {
             className="md:hidden absolute top-20 left-0 w-full bg-zinc-950 border-b border-zinc-900 overflow-hidden px-4 py-6 flex flex-col gap-6 shadow-2xl"
           >
             <div className="flex flex-col gap-4">
-              {navLinks.map((link, idx) => (
+              {navigationConfig.map((link, idx) => (
                 <Link
                   key={idx}
                   href={link.href}
@@ -148,13 +148,13 @@ export default function Navbar() {
             <hr className="border-zinc-900" />
 
             <div className="flex flex-col gap-4">
-              <Link 
-                href="/login" 
-                onClick={() => setIsOpen(false)}
+              <button  
+                href="/login"
+                onClick={() => {setIsOpen(false); setShowLogIn(true)}}
                 className="text-center text-zinc-400 hover:text-white font-medium py-2 rounded-md border border-zinc-900 bg-zinc-900/40"
               >
                 Login
-              </Link>
+              </button>
               <button className="bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold py-3 rounded-md w-full shadow-lg shadow-amber-500/10">
                 Get Started
               </button>

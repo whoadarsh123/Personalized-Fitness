@@ -51,7 +51,7 @@ if (formData.password === formData.password2) {
   };
 
 return(
-<div className="fixed top-[90px]  left-1/2  -translate-x-1/2 w-[500px] h-140 bg-zinc-900/90 backdrop-blur-xl border border-zinc-800 p-6 rounded-2xl shadow-2xl shadow-black/80 z-50 grid grid-rows-1 gap-4">
+<div className="fixed top-[90px]  left-1/2  -translate-x-1/2 w-[370px] h-140 md:w-[500px] bg-zinc-900/90 backdrop-blur-xl border border-zinc-800 p-6 rounded-2xl shadow-2xl shadow-black/80 z-50 grid grid-rows-1 gap-4">
 <X className="opacity-30 cursor-pointer" onClick={()=> onClose(true)}/>
 <form onSubmit={handleSubmit} className="space-y-8 flex-col justify-center items-center">
         
