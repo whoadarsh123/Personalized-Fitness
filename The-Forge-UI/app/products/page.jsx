@@ -34,14 +34,14 @@ export default function products()
   ]
 
   return(
-    <div  className="min-h-screen bg-zinc-950 font-sans text-white pt-32 pb-20 px-4 md:px-8 overflow-hidden relative">
+    <div  className="min-h-screen bg-zinc-950 font-sans text-white pt-32 pb-20 md:px-1 overflow-hidden relative">
     <Navbar/>
-    <div className='absolute w-full top-[80px]'>
-    <motion.div animate={{y:[0,30,0], x:[10, 20,10]}} transition={{duration:2, ease: "easeInOut", repeat: Infinity}} className='font-extrabold mb-10 text-blue-300 px-5 text-9xl'>BUY YOUR DREAM </motion.div> 
-    <section className=' bg-zinc-900 px-5 py-3 flex gap-30 justify-center font-mono'>
+    <div className='absolute w-full top-[60px]'>
+    <motion.div animate={{y:[0,30,0], x:[10, 20,10]}} transition={{duration:2, ease: "easeInOut", repeat: Infinity}} className='font-extrabold mb-10 text-blue-300 px-5 text-3xl md:text-9xl'>BUY YOUR DREAM </motion.div> 
+    <section className='bg-zinc-900 px-2 py-3 border border-zinc-700 rounded-2xl mx-2 flex gap-5 w-fill justify-center font-mono md:gap-40'>
     {navigationConfig.map((LinkItem , idx) =>(
       <div key={idx} onMouseEnter={()=> setIsHovered(idx)} onMouseLeave={()=> setIsHovered(null)}>
-        <h1 className='cursor-pointer hover:text-amber-500'>{LinkItem.name}</h1>
+        <h1 className='cursor-pointer hover:text-amber-500 text-[10px] md:text-[15px]'>{LinkItem.name}</h1>
         <AnimatePresence>
           {isHovered === idx && LinkItem.dropdownItems &&(
             <motion.div 
