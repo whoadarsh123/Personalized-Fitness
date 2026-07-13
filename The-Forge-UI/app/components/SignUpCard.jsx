@@ -54,7 +54,7 @@ return(
 <div className="fixed top-[90px]  left-1/2  -translate-x-1/2 w-[500px] h-140 bg-zinc-900/90 backdrop-blur-xl border border-zinc-800 p-6 rounded-2xl shadow-2xl shadow-black/80 z-50 grid grid-rows-1 gap-4">
 <X className="opacity-30 cursor-pointer" onClick={()=> onClose(true)}/>
 <form onSubmit={handleSubmit} className="space-y-8 flex-col justify-center items-center">
-        {/* Name Field */}
+        
         <div className="relative">
           <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
           <input
@@ -66,7 +66,7 @@ return(
           />
         </div>
 
-        {/* Email Field */}
+        
         <div className="relative">
           <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
           <input
@@ -78,7 +78,7 @@ return(
           />
         </div>
 
-        {/* Password Field */}
+        
         <div className="relative">
           <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
           <input
@@ -108,7 +108,6 @@ return(
           </button>
         </div>
 
-        {/* SUBMIT BUTTON */}
         <button
           type="submit"
           className="w-full mt-2 bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold py-4 rounded-xl flex items-center justify-center gap-1 hover:opacity-95 transition group shadow-lg shadow-amber-500/10 cursor-pointer"
@@ -117,7 +116,6 @@ return(
         </button>
       </form>
 
-      {/* FOOTER */}
       <p className="text-center text-zinc-500 text-sm mt-6">
         Already have an account?{" "}
         <button onClick={()=> {setShowSignUp(false); setShowSignIn(true);}} className="text-amber-500 hover:underline font-medium">

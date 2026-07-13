@@ -18,12 +18,12 @@ export default function PersonalTrainingBAr() {
   return (
     <nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl bg-zinc-950/80 border border-zinc-900 backdrop-blur-md rounded-2xl px-6 py-3 z-50 flex items-center justify-between shadow-2xl">
       
-      {/* Brand Logo Platform */}
+      {/* Brand Logo  */}
       <Link href="/" className="text-amber-500 font-black text-xl uppercase tracking-tighte">
         VORTEX<span className="text-amber-500 group-hover:animate-pulse">.</span>
       </Link>
 
-      {/* Nav Menu Map */}
+      {/* Nav Menu Mapping */}
       <div className="flex items-center gap-1 relative">
         {navigationModules.map((module, idx) => (
           <Link
