@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/api/v1/fitness")
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "https://personalized-fitness.vercel.app")
 public class FitnessController
 {
     @PostMapping("/gain")
