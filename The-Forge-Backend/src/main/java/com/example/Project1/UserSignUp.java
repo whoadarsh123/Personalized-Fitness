@@ -19,7 +19,7 @@ import lombok.Setter;
 @Table(name="User1")
 public class UserSignUp {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     private String name;
