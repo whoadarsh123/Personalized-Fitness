@@ -54,11 +54,11 @@ export default function SimpleTrainingForm() {
     let url = '';
     let payload = null;
     if (activeTab == 'gain') {
-      url = "http://localhost:8080/api/v1/fitness/gain";
+      url = "https://personalized-fitness.onrender.com/api/v1/fitness/gain";
       payload = formData;
     }
     else if (activeTab == 'loss') {
-      url = "http://localhost:8080/api/v1/fitness/loss";
+      url = "https://personalized-fitness.onrender.com/api/v1/fitness/loss";
       payload = lossData
     }
     try {

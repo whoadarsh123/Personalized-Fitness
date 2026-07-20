@@ -14,7 +14,7 @@ export default function Login({ onClose, setShowSignUp, setShowSignIn }) {
     {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:8080/api/signin",{
+            const response = await fetch("https://personalized-fitness.onrender.com/api/signin",{
                 method: "POST",
                 headers:{
                     "Content-Type": "application/json",

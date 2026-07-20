@@ -12,7 +12,7 @@ export default function SignUpCard({onClose, setShowSignIn, setShowSignUp})
 
 if (formData.password === formData.password2) {
     try {
-        const response = await fetch("http://localhost:8080/api/signup", {
+        const response = await fetch("https://personalized-fitness.onrender.com/api/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
