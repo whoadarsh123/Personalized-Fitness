@@ -24,7 +24,7 @@ export function UserCard({setIsLogin})
 
             <button 
                 className="w-full bg-red-500 hover:bg-red-600 active:scale-[0.98] text-white font-semibold text-sm tracking-wide py-2.5 px-4 rounded-lg shadow-sm hover:shadow-md hover:shadow-red-500/20 -translate-y-0 hover:-translate-y-0.5 transition-all duration-200 ease-in-out cursor-pointer"
-            onClick={()=> setIsLogin(false)}>
+            onClick={()=> {setIsLogin(false)}}>
                 Logout Account
             </button>
         </div>

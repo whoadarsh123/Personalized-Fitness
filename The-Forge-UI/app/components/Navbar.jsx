@@ -99,7 +99,7 @@ export default function Navbar() {
         {/* DESKTOP ACTION BUTTONS */}
         {islogin ? (
           <div onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=> setIsHovered(false)}>
-            <CircleUser className="size-7 cursor-pointer"/>
+            <CircleUser className="size-7 cursor-pointer opacity-50 hidden md:block"/>
             {isHovered && (<UserCard setIsLogin={setIsLogin}/>)}
           </div>
         ) : (
@@ -114,11 +114,11 @@ export default function Navbar() {
         )}
 
         {/* MOBILE MENU TRIGGER */}
-        <button 
+         <button 
           onClick={() => setIsOpen(!isOpen)} 
           className="md:hidden text-zinc-400 hover:text-white transition focus:outline-none"
         >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6 " />}
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
@@ -147,7 +147,7 @@ export default function Navbar() {
 
             <hr className="border-zinc-900" />
 
-            <div className="flex flex-col gap-4">
+            {!islogin ? (<div className="flex flex-col gap-4">
               <button  
                 href="/login"
                 onClick={() => {setIsOpen(false); setShowLogIn(true)}}
@@ -158,7 +158,7 @@ export default function Navbar() {
               <button onClick={()=> {setIsOpen(false); setShowsignup(true)}} className="bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold py-3 rounded-md w-full shadow-lg shadow-amber-500/10">
                 Get Started
               </button>
-            </div>
+            </div>):(<div onClick={()=> {setIsLogin(false)}} className="cursor-pointer ml-2 border w-fit p-1 rounded-[7px] text-amber-400" >Logout</div>)}
           </motion.div>
         )}
       </AnimatePresence>

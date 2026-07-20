@@ -84,7 +84,7 @@ export default function SimpleTrainingForm() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white pt-28 pb-20 px-4 md:px-8 flex flex-col items-center justify-start relative">
+    <div className="min-h-screen bg-zinc-950 text-white pt-28 pb-20 p- px-4 md:px-8 flex flex-col items-center justify-start relative">
 
       {/* HEADER SECTION */}
       <div className="text-center mb-10">
