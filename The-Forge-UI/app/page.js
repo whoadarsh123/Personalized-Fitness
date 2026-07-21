@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Dumbbell, Trophy, Users, HeartPulse, ShieldCheck, Flame, ChevronRight } from "lucide-react";
 import Navbar from "./components/Navbar";
 import BodyBuilder from "./images/BodyBuilder.png";
 import NextImage from 'next/image';
@@ -12,7 +11,7 @@ import { useState } from "react";
 export default function GymLanding() {
 
   return (
-    <div className="bg-zinc-950 text-zinc-100 min-h-screen font-sans overflow-x-hidden selection:bg-amber-500 selection:text-black">
+    <div className="bg-zinc-950  text-zinc-100 min-h-screen font-sans overflow-x-hidden selection:bg-amber-500 selection:text-black">
       <Navbar />
       <section className="relative min-h-screen flex flex-col gap-10 top-25 md:flex-row items-center justify-start px-4 md:px-8 border-b border-zinc-900">
         <div className="absolute inset-0  from-amber-500/10 via-transparent to-transparent pointer-events-none" />
@@ -28,22 +27,28 @@ export default function GymLanding() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-6">
-            WORK HARDER <br/>
+            WORK HARDER<br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-600">
               OUTLIVE EVERYONE
             </span>
           </motion.h1>
         </div>
+        <div>
+        </div>
       </section>
 
 
-      <section className="py-15 px-4 max-w-7xl mx-auto min-h-100 flex justify-end bg-zinc-950 ">
+      <section className="relative py-15 px-4 max-w-7xl mx-auto min-h-100 flex flex-col md:flex-row justify-around bg-zinc-950 ">
         <motion.div
           animate={{ y: [0, -20, 0], x: [30, -60, 30] }}
           transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, }}
           className="w-100 h-60 flex justify-center items-center opacity-80 rounded-full">
           <div className="absolute inset-0 bg-amber-600 blur-2xl opacity-80 rounded-full" />
+          
         </motion.div>
+        <div>
+
+        </div>
       </section>
 
       

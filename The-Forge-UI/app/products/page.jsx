@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import { motion, AnimatePresence, easeIn } from "framer-motion";
 import WheyImage from "../images/WheyImage.jpg";
 import Image from 'next/image';
+import ProductCard from '../components/ProductCard';
 
 export default function products() {
   const [isHovered, setIsHovered] = useState(null);
@@ -52,20 +53,8 @@ export default function products() {
         <motion.div animate={{ y: [0, 30, 0], x: [10, 20, 10] }} transition={{ duration: 2, ease: "easeInOut", repeat: Infinity }} className='font-extrabold mb-10 text-zinc-400  px-5 text-2xl md:text-8xl flex gap-2'>BUY YOUR<h1 className='text-amber-500'>DREAM</h1>GEAR</motion.div>
         <section className='bg-zinc-900  py-3 border border-zinc-700 rounded-xl flex gap-6 w-fill justify-center font-mono md:gap-40 mb-5'>
           {navigationConfig.map((LinkItem, idx) => (
-            <div key={idx} onClick={() => setIsClicked(idx)} onMouseEnter={() => setIsHovered(idx)} onMouseLeave={() => setIsHovered(null)}>
+            <div key={idx} onClick={() => setIsClicked(idx)}>
               <h1 className='cursor-pointer hover:text-amber-500 text-[10px] md:text-[15px]'>{LinkItem.name}</h1>
-              <AnimatePresence>
-                {isHovered === idx && LinkItem.dropdownItems && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                    className='size-10 md:size-50 absolute mt-5 z-10'
-                  >
-                    <Image src={WheyImage} alt='Whey Image' />
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
           ))}
         </section>
@@ -113,11 +102,11 @@ export default function products() {
             </motion.div>
           </AnimatePresence>
         </section>
-        <section className=' relative h-fit overflow-hidden rounded-xl border border-gray-800 p-[1px] backdrop-blur-3xl'>
+        <section className=' relative h-fit overflow-hidden rounded-xl border border-gray-800 p-[2px] backdrop-blur-3xl'>
             <span className='absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]' />
-            <div className='inline-flex flex-col h-full w-full items-center rounded-xl bg-gray-950 px-3 py-3 text-sm font-medium text-white backdrop-blur-3xl'>
-             <h1 className='font-bold md:text-4xl mb-2'> Our Ambasators</h1>
-             
+            <div className='inline-flex flex-col h-full w-full items-center rounded-xl bg-gray-950 p-10 text-sm font-medium text-white backdrop-blur-3xl'>
+             <h1 className='font-bold md:text-4xl mb-5'> Best Value Products</h1>
+             <ProductCard/>
             </div>
         </section>
       </div>
