@@ -52,7 +52,7 @@ export default function GymLanding() {
 
       
         <motion.div
-        className="flex items-center border border-amber-300 h-15 gap-8 w-max"
+        className="flex items-center md:hidden border border-amber-300 h-15 gap-8 w-max"
         animate={{
           x: ["10%", "-20%"],
         }}
