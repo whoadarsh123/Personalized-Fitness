@@ -7,14 +7,14 @@ import GymImage2 from "./images/GymImage2.png";
 import NextImage from 'next/image';
 import { useState } from "react";
 import Link from "next/link";
-import { MousePointer2,Sparkles, Cpu, Code, Layers } from "lucide-react";
+import { MousePointer2, Sparkles, Cpu, Code, Layers } from "lucide-react";
 
 const items = [
-    { name: "STAY STRONG", icon: Layers, text: "THINK-GREAT" },
-    { name: "REPLIT", icon: Code, text: "CLOUD DEVELOPMENT" },
-    { name: "WORK HARD", icon: Cpu, text: "FEEL-GOOD" },
-    { name: "EAT HEALTHY", icon: Sparkles, text: "LIVE-LONG" },
-  ];
+  { name: "STAY STRONG", icon: Layers, text: "THINK-GREAT" },
+  { name: "REPLIT", icon: Code, text: "CLOUD DEVELOPMENT" },
+  { name: "WORK HARD", icon: Cpu, text: "FEEL-GOOD" },
+  { name: "EAT HEALTHY", icon: Sparkles, text: "LIVE-LONG" },
+];
 
 const lisItem = [
   { name: 'Weight gain', icon: MousePointer2, href: "/services" },
@@ -35,7 +35,7 @@ export default function GymLanding() {
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}>
-          <NextImage src={BodyBuilder} alt="#" className="h-auto" />
+          <NextImage src={GymImage2} alt="#" className="size-80 border-b-7 rounded-full mb-4 border-b-amber-700 md:size-fit" />
         </motion.div>
         <div className="max-w-3xl text-center z-10">
           <motion.h1
@@ -50,55 +50,48 @@ export default function GymLanding() {
           </motion.h1>
         </div>
 
-      
-        <motion.div
-        className="flex items-center md:hidden border border-amber-300 h-15 gap-8 w-max"
-        animate={{
-          x: ["10%", "-20%"],
-        }}
-        transition={{
-          ease: "linear",
-          duration: 20, 
-          repeat: Infinity,
-        }}
-      >
-        {duplicatedItems.map((item, idx) => {
-          const Icon = item.icon;
-          return (
-            <div
-              key={idx}
-              className="flex items-center gap-3 px-6 py-2 rounded-full bg-zinc-950/80 "
-            >
-              <Icon className="w-5 h-5 text-amber-50" />
-              <span className="font-extrabold text-white text-sm tracking-wide">
-                {item.name}
-              </span>
-              <span className="text-amber-50 font-medium text-sm">
-                • {item.text}
-              </span>
-            </div>
-          );
-        })}
-      </motion.div>
-
       </section>
-      <section className="relative py-15 px-4 max-w-7xl mx-auto min-h-100 flex flex-col md:flex-row items-center md:justify-around bg-zinc-950 ">
-        <div className="md:h-150 md:w-150 flex text-center ">
-          <NextImage className="h-auto" src={GymImage2} alt="#" />
-        </div>
-        <div className="border-[0.10] border-zinc-800 w-full md:w-[50%] flex flex-col justify-around items-center md:py-5 py-2 rounded-2xl md:h-120 bg-zinc-900 h-40">
-          <h1 className="tracking-tighter font-black md:text-5xl text-4xl text-center text-amber-200">PREMIUM<br />WORKOUT PLAN </h1>
-          {/* <ul className="hidden md:block">Weight Gain</ul>
-            <ul className="hidden md:block">Weight Loss</ul>
-            <ul className="hidden md:block">Strength Gain</ul>
-            <ul className="hidden md:block">Yoga & Meditation </ul> */}
-
-          {lisItem.map((item, idx) => {
-            return <div className="hidden md:block font-sans text-zinc-400 text-2xl mt-2" key={idx}>{item.name} <MousePointer2 className="text-amber-500" /></div>
+      <section className="relative py-15 px-2 w-fill min-h-100 flex flex-col md:flex-col items-center md:justify-around bg-zinc-950">
+        <motion.div
+          className="flex items-center border border-amber-300 h-15 gap-8 w-max"
+          animate={{
+            x: ["10%", "-20%"],
+          }}
+          transition={{
+            ease: "linear",
+            duration: 20,
+            repeat: Infinity,
+          }}
+        >
+          {duplicatedItems.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={idx}
+                className="flex items-center gap-3 px-6 py-2 rounded-full bg-zinc-950/80 "
+              >
+                <Icon className="w-5 h-5 text-amber-50" />
+                <span className="font-extrabold text-white text-sm tracking-wide">
+                  {item.name}
+                </span>
+                <span className="text-amber-50 font-medium text-sm">
+                  • {item.text}
+                </span>
+              </div>
+            );
           })}
 
-          <Link href="/services" className="border flex items-center justify-center text-black h-10 w-[30%] md:w-[70%] hover:border-amber-600 from-amber-500 to-orange-500 bg-gradient-to-r rounded-[7px] mt-3 p-1 font-bold">Start</Link>
+        </motion.div>
+        <div className="md:h-fit mt-10 md:w-full px-2 items-center flex flex-col text-center ">
+          <NextImage className="h-auto border-b-7 rounded-full border-b-amber-700 object-cover" src={BodyBuilder} alt="#" />
+          <div className="grid grid-cols-2 md:grid-cols-4 w-full h-100 items-end sm:grid-cols-2 p-5 gap-7">
+              {lisItem.map((item, idx)=>{
+            return <motion.div initial={{y:0}} whileHover={{y:-10 }} key={idx} className="border border-zinc-700 hover:border-amber-600 bg-zinc-900 w-auto h-70 rounded-2xl "></motion.div>
+           })}
+          </div>
+           
         </div>
+       
         <motion.div
           animate={{ y: [0, -20, 0], x: [30, -60, 30] }}
           transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, }}

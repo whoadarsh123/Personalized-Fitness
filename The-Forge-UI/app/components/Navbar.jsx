@@ -28,9 +28,9 @@ export default function Navbar() {
  const [showsignup, setShowsignup] = useState(false);
 
  const navigationConfig = [
-    { name: "Home", href: "/", dropdownItems: null },
+    { name: "HOME", href: "/", dropdownItems: null },
     { 
-      name: "Services", 
+      name: "SERVICES", 
       href: "/services", 
       dropdownItems: [
         { name: "Personal Training", desc: "1-on-1 custom biological coaching.", icon: <Target className="w-5 h-5 text-amber-500" />, href: "/services#pt" },
@@ -40,7 +40,7 @@ export default function Navbar() {
       ]
     },
     { 
-      name: "Products", 
+      name: "PRODUCTS", 
       href: "/products", 
       dropdownItems: [
         { name: "Whey Isolate", desc: "Ultra-pure fast-absorbing muscle recovery protein.", icon: <Zap className="w-5 h-5 text-amber-500" />, href: "/products#protein" },
@@ -49,7 +49,7 @@ export default function Navbar() {
         { name: "Daily Essentials", desc: "Multivitamins and joint support formulas.", icon: <Heart className="w-5 h-5 text-amber-500" />, href: "/products#vitamins" },
       ]
     },
-    { name: "About", href: "/about", dropdownItems: [
+    { name: "ABOUT", href: "/about", dropdownItems: [
       {name: "Demo1", desc:"this is the demo for demo1", icon: <Zap className="w-5 h-5 text-amber-500"/>, href:"/demo1"},
       {name: "Demo2", desc:"this is the demo for demo2", icon: <Zap className="w-5 h-5 text-amber-500"/>, href:"/demo2"},
       {name: "Demo3", desc:"this is the demo for demo3", icon: <Zap className="w-5 h-5 text-amber-500"/>, href:"/demo3"}
@@ -105,10 +105,10 @@ export default function Navbar() {
         ) : (
         <div className="hidden md:flex items-center gap-4">
           <button onClick={()=> {setShowLogIn(true)}} className="text-sm font-semibold text-zinc-400 hover:text-zinc-100 transition">
-            Login
+            LOGIN
           </button>
           <button onClick={()=> {setShowsignup(true)}} className="bg-gradient-to-r from-amber-500 to-orange-500 text-black text-sm font-bold px-5 py-2.5 rounded-md flex items-center gap-1 hover:opacity-90 transition group shadow-lg shadow-amber-500/10">
-            Get Started <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            GET STARTED <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
         )}
@@ -153,10 +153,10 @@ export default function Navbar() {
                 onClick={() => {setIsOpen(false); setShowLogIn(true)}}
                 className="text-center text-zinc-400 hover:text-white font-medium py-2 rounded-md border border-zinc-900 bg-zinc-900/40"
               >
-                Login
+                LOGIN
               </button>
               <button onClick={()=> {setIsOpen(false); setShowsignup(true)}} className="bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold py-3 rounded-md w-full shadow-lg shadow-amber-500/10">
-                Get Started
+                GET STARTED
               </button>
             </div>):(<div onClick={()=> {setIsLogin(false)}} className="cursor-pointer ml-2 border w-fit p-1 rounded-[7px] text-amber-400" >Logout</div>)}
           </motion.div>
