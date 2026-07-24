@@ -7,7 +7,7 @@ import GymImage2 from "./images/GymImage2.png";
 import NextImage from 'next/image';
 import { useState } from "react";
 import Link from "next/link";
-import { MousePointer2, Sparkles, Cpu, Code, Layers, Weight , HandFist, Hamburger, ArrowDownUp} from "lucide-react";
+import { MousePointer2, Sparkles, Cpu, Code, Layers, Weight, HandFist, Hamburger, ArrowDownUp } from "lucide-react";
 
 const items = [
   { name: "STAY STRONG", icon: Layers, text: "THINK-GREAT" },
@@ -18,8 +18,8 @@ const items = [
 
 const lisItem = [
   { name: 'MASS', icon: Weight, description: "Progressive overload blocks for building size and raw strength.", href: "/services" },
-  { name: 'POWER', icon: HandFist, description:"Fat-loss programming that preserves the muscle you already built.", href: "/services" },
-  { name: 'CUT', icon: Hamburger, description:"Compound lifts and explosive work for raw functional strength.", href: "/services" },
+  { name: 'POWER', icon: HandFist, description: "Fat-loss programming that preserves the muscle you already built.", href: "/services" },
+  { name: 'CUT', icon: Hamburger, description: "Compound lifts and explosive work for raw functional strength.", href: "/services" },
   { name: 'FLOW', icon: ArrowDownUp, description: "Mobility and breath-led sessions that keep the rest of training honest.", href: "/services" }
 ];
 
@@ -87,20 +87,19 @@ export default function GymLanding() {
         <div className="md:h-fit mt-10 md:w-full px-3 items-center flex flex-col text-center ">
           <NextImage className="h-auto border-b-7 rounded-full border-b-amber-700 object-cover" src={BodyBuilder} alt="#" />
           <div className="grid grid-cols-2 md:grid-cols-4 w-full h-100 items-end sm:grid-cols-2 pt-7 gap-4">
-              {lisItem.map((item, idx)=>{
-                const Icon = item.icon;
-            return (<motion.div initial={{y:0}} whileHover={{y:-10 }} key={idx} className="border border-zinc-700 hover:border-amber-600 bg-zinc-900 w-auto h-70 rounded-2xl">
-              <div className="flex p-5 flex-col gap-3 items-start text-start">
-                <div className="bg-zinc-800 p-5 rounded-full"><Icon className="text-amber-600"/></div>
-                <h1 className="text-2xl font-semibold">{item.name}</h1>
-                <h2 className="text-zinc-400">{item.description}</h2>
-              </div>
-            </motion.div>);
-           })}
+            {lisItem.map((item, idx) => {
+              const Icon = item.icon;
+              return (<motion.div initial={{ y: 0 }} whileHover={{ y: -10 }} key={idx} className="border border-zinc-700 hover:border-amber-600 bg-zinc-900 w-auto h-70 rounded-2xl">
+                <div className="flex p-5 flex-col gap-3 items-start text-start">
+                  <div className="bg-zinc-800 p-5 rounded-full"><Icon className="text-amber-600" /></div>
+                  <h1 className="text-2xl font-semibold">{item.name}</h1>
+                  <h2 className="text-zinc-400">{item.description}</h2>
+                </div>
+              </motion.div>);
+            })}
           </div>
-           
         </div>
-       
+
         <motion.div
           animate={{ y: [0, -20, 0], x: [30, -60, 30] }}
           transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, }}
@@ -110,13 +109,13 @@ export default function GymLanding() {
       </section>
 
 
-      <section className="py-24 px-4 bg-zinc-900/30 border-t border-zinc-900 relative">
+      <section className="py-10 px-4 bg-zinc-900/30 border-t border-zinc-900 relative">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
+          <div className="text-start md:text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-extrabold uppercase tracking-tight">
               Membership <span className="text-amber-500">Tiers</span>
             </h2>
-            <p className="text-zinc-500 mt-2">Cards spring up and expand into full grid format upon scroll viewport entry.</p>
+            <p className="text-zinc-500 mt-2">Metal gets stronger the more heat and pressure it's put under. So do you.</p>
           </div>
 
           <motion.div
@@ -126,8 +125,38 @@ export default function GymLanding() {
             variants={{
               visible: { transition: { staggerChildren: 0.15 } }
             }}
-            className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center"
           >
+            <div className="border w-auto flex items-start flex-col  h-80 rounded-xl p-7 border-amber-700 bg-zinc-800">
+              <h1 className="text-amber-600 font-mono">STAGE 1</h1>
+                <h1 className="text-4xl font-bold mb-2">RAW IRON</h1>
+                <h2 className="text-zinc-500 text-2xl">$1,999 /mo</h2>
+                <ul className="mt-7 font-medium flex flex-col gap-1 text-zinc-400 mb-7">
+                  <li>Full gym floor access</li>
+                  <li>1 group class per week</li>
+                  <li>Monthly body composition scan</li>
+                </ul>
+            </div>
+            <div className="border w-auto flex items-start flex-col  h-80 rounded-xl p-7 border-amber-500 bg-zinc-800">
+              <h1 className="text-amber-600 font-mono">STAGE 2</h1>
+                <h1 className="text-4xl font-bold mb-2">HARDENED STEEL</h1>
+                <h2 className="text-zinc-500 text-2xl">$3,499 /mo</h2>
+                <ul className="mt-7 font-medium flex flex-col gap-1 text-zinc-400 mb-7">
+                  <li>Everything in Row Iron</li>
+                  <li>Unlimited Group Classes</li>
+                  <li>Personalised program updates monthly</li>
+                </ul>
+            </div>
+            <div className="border w-auto flex items-start flex-col  h-80 rounded-xl p-7 border-amber-300 bg-zinc-800">
+              <h1 className="text-amber-600 font-mono">STAGE 3</h1>
+                <h1 className="text-4xl font-bold mb-2">FORGED BLADE</h1>
+                <h2 className="text-zinc-500 text-2xl">$4,999 /mo</h2>
+                <ul className="mt-7 font-medium flex flex-col gap-1 text-zinc-400 mb-7">
+                  <li>Everything in Hardened steel</li>
+                  <li>1 group class per week</li>
+                  <li>Nutrition plan + recovery sessions</li>
+                </ul>
+            </div>
           </motion.div>
         </div>
       </section>
